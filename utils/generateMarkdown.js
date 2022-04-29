@@ -11,23 +11,34 @@ function renderLicenseLink(license) {}
 function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
-const generateMarkdown = (name, github) => {
+const generateMarkdown = (data) => {
+  console.log(data);
   return `
-          <!DOCTYPE html> 
-          <html lang="en"> 
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Portfolio Demo</title>
-          </head>
-        
-          <body>
-            <h1>${name}</h1>
-            <h2><a href="https://github.com/${github}">Github</a></h2>
-          </body>
-          </html>
-          `;
+  # ${data.Title}
+  https://github.com/${data.Username}/${data.Title}
+  # Description
+  ${data.Description}
+  # Table of Contents
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [License](#license)
+  * [Contributing](#contributing)
+  * [Tests](#tests)
+  * [Questions](#questions)
+  #  Installation
+  The following necessary dependencies must be installed to run the application
+  # Usage
+  In order to use the app ${data.Usage}
+  # License
+  This project is licensed to ${data.License}.
+  # Contributing
+  Contributing ${data.Contributing}
+  # Tests
+  The following tests are needed in order to run : ${data.Tests}
+  # Questions
+  If you have any inquiries about the repo, please contact ${data.Username}
+
+  `;
 };
 
 module.exports = generateMarkdown;

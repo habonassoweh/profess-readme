@@ -10,13 +10,13 @@ const questions = () => {
   return inquirer.prompt([
     {
       type: "input",
-      name: "What is the title of the project?",
-      message: "Title",
+      name: "Title",
+      message: "What is the title of the project?",
     },
     {
       type: "input",
-      name: "What is your project about? Give a detailed desciption",
-      message: "Description",
+      name: "Description",
+      message: "What is your project about? Give a detailed desciption",
     },
     {
       type: "input",
@@ -30,32 +30,32 @@ const questions = () => {
     },
     {
       type: "input",
-      name: "usage",
+      name: "Usage",
       message: "How is the app used? Provide instructions",
     },
     {
       type: "input",
-      name: "username",
+      name: "Username",
       message: "What is your Github username?",
     },
     {
       type: "input",
-      name: "questions",
+      name: "Questions",
       message: "Contact Us for Inquiries",
     },
     {
       type: "input",
-      name: "email",
+      name: "Email",
       message: "What is you email address?",
     },
     {
       type: "input",
-      name: "contributing",
+      name: "Contributing",
       message: "Who contributed to this project?",
     },
     {
       type: "input",
-      name: "tests",
+      name: "Tests",
       message: "What commands are needed to test this project?",
     },
     {
@@ -68,33 +68,22 @@ const questions = () => {
   ]);
 };
 questions().then((answers) => {
-  const pageHTML = generateMarkdown();
-
-  fs.writeFile("./index.html", generateMarkdown(name, github), (err) => {
+  console.log(answers);
+  fs.writeFile("./README.md", generateMarkdown({ ...answers }), (err) => {
     if (err) throw err;
+    console.log(answers);
 
-    console.log("Readme complete! Check out index.html to see the output!");
+    console.log("Readme complete! Check out readme.md to see the output!");
   });
-
-  //   console.log('Page created! Check out index.html in this directory to see it!');
-  // });
 });
 
-// TODO: Create a function to write README file
-// fs.writeFile("index.html", generateMarkdown(name, github), (err) => {
-//   if (err) throw err;
-
-//   console.log("Readme complete! Check out index.html to see the output!");
-// });
-
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+  inquirer.prompt(questions).then(function (data) {
+    writetoFile("README.md", generateMarkdown(data));
+    console.log(data);
+  });
+}
 
 // Function call to initialize app
-init();
-
-// const printReadmeData = (readmeDataArr) => {
-//   readmeDataArr.forEach((readmeItem) => console.log(readmeItem));
-// };
-
-// printReadmeData(readmeDataArgs);
+// init();
