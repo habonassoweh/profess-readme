@@ -84,6 +84,3 @@ function init() {
     console.log(data);
   });
 }
-
-// Function call to initialize app
-// init();
